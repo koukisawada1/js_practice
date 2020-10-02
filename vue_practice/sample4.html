@@ -6,14 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <p></p>
+    <p>ディレクティブについて</p>
     <script src="vue.js"></script>
     <div id="app">
+        <!-- 上と下は同じ意味 -->
         <p>{{ message }}</p>
+        <p v-text="message"></p>
     </div>
     <script>
+        
         new Vue({
-
+            el: '#app',
+            data: {
+            message: 'Hello Would'
+            }
         })
     </script>
 </body>
