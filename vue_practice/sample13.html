@@ -1,0 +1,44 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>キー修飾子について(キーボードに対するイベント）</p>
+    <script src="vue.js"></script>
+    <div id="app">
+        <p>現在{{ number }}回クリックされています</p>
+        <button v-on:click="countUp(3)">カウントアップ</button>
+        <p v-on:mousemove="changeMousePosition(10, $event)">マウスを乗せてください<span v-on:mousemove.stop>反応しないでください</span></p>
+        <a v-on:click.prevent href="https://google.com">Google</a>
+        <!-- デフォルトの挙動をさせない -->
+        <p>X:{{x}}.Y:{{y}}</p>
+        <input type="text" v-on:keyup.enter="myAlert">
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                number: 0,
+                x:0,
+                y:0
+            },
+            methods: {
+                //3ずつカウントアップする
+                countUp: function(times) {
+                    this.number += 1 * times
+                },
+                //値を10分の１で表示する
+                changeMousePosition: function(dividNumber, event) {
+                    this.x = event.clientX / dividNumber;
+                    this.y = event.clientY / dividNumber;
+                },
+                //エンターを押すとアラートが表示される
+                myAlert() {
+                    alert('アラート')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
