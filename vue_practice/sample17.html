@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>computedとmethodの違いを理解</p>
+    <script src="vue.js"></script>
+    <div id="app">
+        <p>{{ counter }}</p>
+        <button @click="counter += 1">+1</button>
+        <p>{{ lessThanThreeComputed }}</p>
+        <p>{{ lessThanThreeMethod() }}</p>
+    </div>
+    <!-- いつ関数が実行されているかの違い
+    Method　ビューに少しでも変更があり、再描画されたときに実行される
+    Computed 参照先の値が変わった時のみ実行される -->
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                counter:0
+            }, 
+            computed: {
+                lessThanThreeComputed: function() {
+                    return this.counter > 3 ? '3より上' : '3以下'
+                }
+            },
+            methods: {
+                lessThanThreeMethod: function() {
+                    return this.counter > 3 ? '3より上' : '3以下'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
