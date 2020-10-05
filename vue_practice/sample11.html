@@ -1,0 +1,37 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>v-onに指定しているメゾットに引数を持たせる</p>
+    <script src="vue.js"></script>
+    <div id="app">
+        <p>現在{{ number }}回クリックされています</p>
+        <button v-on:click="countUp(3)">カウントアップ</button>
+        <p v-on:mousemove="changeMousePosition(10, $event)">マウスを乗せてください</p>
+        <p>X:{{x}}.Y:{{y}}</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                number: 0,
+                x:0,
+                y:0
+            },
+            methods: {
+                //3ずつカウントアップする
+                countUp: function(times) {
+                    this.number += 1 * times
+                },
+                //値を10分の１で表示する
+                changeMousePosition: function(dividNumber, event) {
+                    this.x = event.clientX / dividNumber;
+                    this.y = event.clientY / dividNumber;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
