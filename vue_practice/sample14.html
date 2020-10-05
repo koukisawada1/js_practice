@@ -1,0 +1,29 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>v-onディレクティブの因数[]を使って動的に表現する</p>
+    <script src="vue.js"></script>
+    <div id="app">
+        <p>現在{{ number }}回クリックされています</p>
+        <button @[event]="countUp">カウントアップ</button>
+        <!-- v-onの省略記号 @  -->
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                number: 0,
+                event: 'click'
+            },
+            methods: {
+                countUp: function() {
+                    this.number += 1
+                }
+            }
+        })
+    </script>
+</body>
+</html>
