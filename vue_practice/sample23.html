@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>v-ifディレクティブを使って、条件に応じて描画する処理</p>
+    <script src="vue.js"></script>
+    <div id="app">
+        <!-- v-elseはv-ifのすぐ後に書かないと処理されない -->
+        <p v-if="ok">OK!</p>
+        <p v-else>Not OK...</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app', 
+            data: {
+                ok: false,
+            }
+        })
+    </script>
+</body>
+</html>
