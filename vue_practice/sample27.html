@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>kye属性をつける必要性を学び、予期せぬバグを起こさないv-forを作る</p>
+    <script src="vue.js"></script>
+    <div id="app">
+        <ul>
+            <p>先頭を削除した時にインプとタグが変わらない</p>
+            <div v-for="fruit in fruits">
+                <p>{{fruit}}</p>
+                <input type="text">
+            </div>
+        </ul>
+        <hr>
+        <ul>
+            <div v-for="fruit in fruits" :key="fruit">
+                <p>{{fruit}}</p>
+                <input type="text">
+            </div>
+        </ul>
+        <button @click="remove">先頭を削除</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                fruits: ['りんご', 'ばなな', 'ぶどう'],
+            },
+            methods: {
+                remove: function() {
+                    this.fruits.shift()
+                    // shift 先頭を削除する関数
+                }
+            }
+        })
+    </script>
+</body>
+</html>
