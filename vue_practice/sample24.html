@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>templateタグを使用して、不要な要素を使わずにv-ifを複数要素に適用させる</p>
+    <script src="vue.js"></script>
+    <div id="app">
+        <!-- templateタグとは全く表示されないもの　グループ化させる -->
+        <template v-if="ok">
+            <p>Hello</p>
+            <p>Good Bye</p>
+            <p>おはよう</p>
+        </template>
+        <button @click="ok = !ok">ボタン</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                ok: true
+            }
+        })
+    </script>
+</body>
+</html>
