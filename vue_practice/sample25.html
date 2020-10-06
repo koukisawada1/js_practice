@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>v-showを使って、頻繁に何かを切り替える処理のパフォーマンスを高める</p>
+    <script src="vue.js"></script>
+    <div id="app">
+        <button @click="ok = !ok">ボタン</button>
+        <p v-if="ok">If</p>
+        <p v-show="ok">Show</p>
+        <!-- v-if 要素ごと消す ボタンの切り替えによる再描画が遅い-->
+        <!-- v-show スタイルが　display: none;にすることによって消す
+        templateタグが使えない 初期描画が遅い-->
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                ok: true
+            }
+        })
+    </script>
+</body>
+</html>
