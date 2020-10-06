@@ -11,6 +11,7 @@
     <div id="app">
         <!-- v-elseはv-ifのすぐ後に書かないと処理されない -->
         <p v-if="ok">OK!</p>
+        <p v-else-if="maybeOk">maybe OK!</p>
         <p v-else>Not OK...</p>
     </div>
     <script>
@@ -18,6 +19,7 @@
             el: '#app', 
             data: {
                 ok: false,
+                maybeOk: true
             }
         })
     </script>
