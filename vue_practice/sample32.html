@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>template/renderプロパティ/仮想DOMについて</p>
+    <!-- template 文字列のみでテンプレートを書く -->
+    <!-- render 仮想ノードを作ってDOMの描画を行う -->
+    <!-- 仮想DOMとはDOM要素を模したJavaScript用のオブジェクト -->
+    <script src="vue.js"></script>
+
+    <div id="app">
+        <p>{{ message }}</p>
+        <p>{{name}}</p>
+        <p>{{myData}}</p>
+        <button @click="message = ボタンから変更">変更</button>
+    </div>
+
+    <div id="app2"></div>
+
+    <div id="app3"></div>
+
+
+
+    <script>
+        var data = {
+            message: 'こんにちわ',
+            name: 'よしぴー'
+        }
+
+        var vm = new Vue({
+            data: data,
+            computed: {
+                myData: function() {
+                    return this.$data;
+                }
+            }
+        })
+
+        vm.$mount('#app')
+
+        new Vue ({
+            data: {
+                name: 'よしぴー'
+            },
+            template: '<h1>こんにちは、{{name}}</h1>'
+        }).$mount('#app2')
+
+        // render関数について
+        new Vue ({
+            data: {
+                name: 'よしぴー'
+            },
+            render: function(createElement) {
+                return createElement('h1' , 'こんにちは、' +this.name);
+            },
+        }).$mount('#app3')
+
+        //　直接DOM(ブラウザが用意している関数)要素を追加している
+        var dir = document.createElement('div');
+        console.log(dir)
+        console.dir(dir)
+        console.log(document)
+        console.dir(document)
+
+    </script>
+</body>
+</html>
