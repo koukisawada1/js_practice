@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>コンポーネントを使用して、同じようなインスタンスを使い回す</p>
+
+    <script src="vue.js"></script>
+
+    <div id="app">
+        <p>{{ message }}</p>
+        <p>{{name}}</p>
+        <p>{{myData}}</p>
+        <hello></hello>
+        <hello></hello>
+        <button @click="message = ボタンから変更">変更</button>
+    </div>
+
+    <div id="app2"></div>
+
+    <div id="app3"></div>
+
+    <div id="app4">
+        <h1>こんにちわ、{{name}}</h1>
+        <button @click="name = '太郎さん'">名前を変更</button>
+        <button @click='destroy'>インスタンスを破壊</button>
+        <hello></hello>
+    </div>
+
+
+    <script>
+        var data = {
+            message: 'こんにちわ',
+            name: 'よしぴー'
+        }
+
+         // コンポーネントを使用して、同じようなインスタンスを使い回す
+         // コンポーネントを登録する
+         Vue.component('hello' , {
+             template: '<p>こんにちは</p>'
+         });
+
+        var vm = new Vue({
+            data: data,
+            computed: {
+                myData: function() {
+                    return this.$data;
+                }
+            }
+        })
+
+        vm.$mount('#app')
+
+        new Vue ({
+            data: {
+                name: 'よしぴー'
+            },
+            template: '<h1>こんにちは、{{name}}</h1>'
+        }).$mount('#app2')
+
+        // render関数について
+        new Vue ({
+            data: {
+                name: 'よしぴー'
+            },
+            render: function(createElement) {
+                return createElement('h1' , 'こんにちは、' +this.name);
+            },
+        }).$mount('#app3')
+
+        //　直接DOM(ブラウザが用意している関数)要素を追加している
+        var dir = document.createElement('div');
+        console.log(dir)
+        console.dir(dir)
+        console.log(document)
+        console.dir(document)
+
+        new Vue({
+            el: '#app4',
+            data: {
+                name: 'よしぴー'
+            },
+            beforeCreate: function() {
+                console.log('beforeCreate');
+            },
+            created: function() {
+                console.log('created');
+            },
+            beforeMount: function() {
+                console.log('beforeMount');
+            },
+            mounted: function() {
+                console.log('mounted');
+            },
+            beforeUpdate: function() {
+                console.log('beforeUpdate');
+            },
+            updated: function() {
+                console.log('updated');
+            },
+            beforeDestroy: function() {
+                console.log('beforeDestory');
+            },
+            destroyed: function() {
+                console.log('destroyed');
+            },
+            methods: {
+                destroy: function() {
+                    this.$destroy()
+                    // vue.js(ロジック)を全て破壊する
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
